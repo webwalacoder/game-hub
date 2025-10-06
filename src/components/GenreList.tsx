@@ -1,5 +1,12 @@
 import useGenres, { type Genre } from "@/hooks/useGenres";
-import { Button, HStack, Image, List, Spinner } from "@chakra-ui/react";
+import {
+  Button,
+  HStack,
+  Image,
+  List,
+  Spinner,
+  Tooltip,
+} from "@chakra-ui/react";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
@@ -22,16 +29,25 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
               borderRadius={8}
               src={genre.image_background}
             />
-            <Button
-              onClick={() => onSelectGenre(genre)}
-              fontSize="lg"
-              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
-              variant="plain"
-              _hover={{ textDecoration: "underline" }}
-              padding="0"
-            >
-              {genre.name}
-            </Button>
+            <Tooltip.Root openDelay={800} closeDelay={200}>
+              <Tooltip.Trigger asChild>
+                <Button
+                  onClick={() => onSelectGenre(genre)}
+                  fontSize="lg"
+                  fontWeight={
+                    genre.id === selectedGenre?.id ? "bold" : "normal"
+                  }
+                  variant="plain"
+                  _hover={{ textDecoration: "underline" }}
+                  padding="0"
+                >
+                  {genre.name.length >= 12
+                    ? genre.name.slice(0, 12) + "..."
+                    : genre.name}
+                </Button>
+              </Tooltip.Trigger>
+              <Tooltip.Content>{genre.name}</Tooltip.Content>
+            </Tooltip.Root>
           </HStack>
         </List.Item>
       ))}
