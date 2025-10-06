@@ -2,8 +2,14 @@ import { Button, HStack, Icon, Menu } from "@chakra-ui/react";
 import { useColorModeValue } from "./ui/color-mode";
 import { BsChevronDown } from "react-icons/bs";
 import usePlatforms from "@/hooks/usePlatforms";
+import type { Platform } from "@/hooks/useGames";
 
-const PlatformSelector = () => {
+interface Props {
+  onSelectPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | null;
+}
+
+const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   const { data, error } = usePlatforms();
 
   const bg = useColorModeValue("gray.100", "gray.700");
@@ -17,7 +23,7 @@ const PlatformSelector = () => {
       <Menu.Trigger asChild>
         <Button bg={bg} _hover={{ bg: hoverBg }} color={color} marginX={4}>
           <HStack gap="2">
-            <span>Platform</span>
+            <span>{selectedPlatform?.name || "Platform"}</span>
             <Icon as={BsChevronDown} />
           </HStack>
         </Button>
@@ -26,7 +32,11 @@ const PlatformSelector = () => {
       <Menu.Positioner>
         <Menu.Content>
           {data.map((platform) => (
-            <Menu.Item key={platform.id} value={platform.name}>
+            <Menu.Item
+              onClick={() => onSelectPlatform(platform)}
+              key={platform.id}
+              value={platform.name}
+            >
               {platform.name}
             </Menu.Item>
           ))}
