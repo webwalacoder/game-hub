@@ -21,7 +21,7 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   return (
     <Menu.Root>
       <Menu.Trigger asChild>
-        <Button bg={bg} _hover={{ bg: hoverBg }} color={color} marginX={4}>
+        <Button bg={bg} _hover={{ bg: hoverBg }} color={color}>
           <HStack gap="2">
             <span>{selectedPlatform?.name || "Platform"}</span>
             <Icon as={BsChevronDown} />
