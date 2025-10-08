@@ -7,6 +7,7 @@ import {
   Spinner,
   Tooltip,
 } from "@chakra-ui/react";
+import getCroppedImageUrl from "@/services/image-url";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
@@ -27,7 +28,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
             <Image
               boxSize="32px"
               borderRadius={8}
-              src={genre.image_background}
+              src={getCroppedImageUrl(genre.image_background)}
             />
             <Tooltip.Root openDelay={800} closeDelay={200}>
               <Tooltip.Trigger asChild>
