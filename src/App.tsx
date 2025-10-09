@@ -56,7 +56,7 @@ function App() {
           />
         </GridItem>
       </Show>
-      <GridItem area="main" paddingX={3}>
+      <GridItem area="main" padding={3}>
         <GameHeading gameQuery={gameQuery} />
         <HStack gap={5} marginBottom={5}>
           <PlatformSelector

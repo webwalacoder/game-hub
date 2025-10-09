@@ -1,6 +1,7 @@
 import useGenres, { type Genre } from "@/hooks/useGenres";
 import {
   Button,
+  Heading,
   HStack,
   Image,
   List,
@@ -21,38 +22,44 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   if (isLoading) return <Spinner />;
 
   return (
-    <List.Root listStyle="none">
-      {data.map((genre) => (
-        <List.Item key={genre.id} paddingY="5px">
-          <HStack>
-            <Image
-              boxSize="32px"
-              borderRadius={8}
-              src={getCroppedImageUrl(genre.image_background)}
-            />
-            <Tooltip.Root openDelay={800} closeDelay={200}>
-              <Tooltip.Trigger asChild>
-                <Button
-                  onClick={() => onSelectGenre(genre)}
-                  fontSize="lg"
-                  fontWeight={
-                    genre.id === selectedGenre?.id ? "bold" : "normal"
-                  }
-                  variant="plain"
-                  _hover={{ textDecoration: "underline" }}
-                  padding="0"
-                >
-                  {genre.name.length >= 12
-                    ? genre.name.slice(0, 12) + "..."
-                    : genre.name}
-                </Button>
-              </Tooltip.Trigger>
-              <Tooltip.Content>{genre.name}</Tooltip.Content>
-            </Tooltip.Root>
-          </HStack>
-        </List.Item>
-      ))}
-    </List.Root>
+    <>
+      <Heading fontSize="2xl" marginBottom={3}>
+        Genres
+      </Heading>
+      <List.Root listStyle="none">
+        {data.map((genre) => (
+          <List.Item key={genre.id} paddingY="5px">
+            <HStack>
+              <Image
+                boxSize="32px"
+                borderRadius={8}
+                src={getCroppedImageUrl(genre.image_background)}
+                objectFit="cover"
+              />
+              <Tooltip.Root openDelay={800} closeDelay={200}>
+                <Tooltip.Trigger asChild>
+                  <Button
+                    onClick={() => onSelectGenre(genre)}
+                    fontSize="lg"
+                    fontWeight={
+                      genre.id === selectedGenre?.id ? "bold" : "normal"
+                    }
+                    variant="plain"
+                    _hover={{ textDecoration: "underline" }}
+                    padding="0"
+                  >
+                    {genre.name.length >= 12
+                      ? genre.name.slice(0, 12) + "..."
+                      : genre.name}
+                  </Button>
+                </Tooltip.Trigger>
+                <Tooltip.Content>{genre.name}</Tooltip.Content>
+              </Tooltip.Root>
+            </HStack>
+          </List.Item>
+        ))}
+      </List.Root>
+    </>
   );
 };
 export default GenreList;
