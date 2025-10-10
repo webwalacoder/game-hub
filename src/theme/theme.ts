@@ -1,0 +1,27 @@
+import { createSystem, defaultConfig } from "@chakra-ui/react";
+
+export const system = createSystem(defaultConfig, {
+  theme: {
+    tokens: {
+      ...defaultConfig.theme?.tokens,
+      fonts: {
+        ...defaultConfig.theme?.tokens?.fonts,
+      },
+      colors: {
+        ...defaultConfig.theme?.tokens?.colors,
+        gray: {
+          50: { value: "#f9f9f9" },
+          100: { value: "#ededed" },
+          200: { value: "#d3d3d3" },
+          300: { value: "#b3b3b3" },
+          400: { value: "#a0a0a0" },
+          500: { value: "#898989" },
+          600: { value: "#636363" },
+          700: { value: "#202020" },
+          800: { value: "#121212" },
+          900: { value: "#111" },
+        },
+      },
+    },
+  },
+});
