@@ -2,7 +2,7 @@ import { Button, HStack, Icon, Menu } from "@chakra-ui/react";
 import { useColorModeValue } from "./ui/color-mode";
 import { BsChevronDown } from "react-icons/bs";
 import usePlatforms from "@/hooks/usePlatforms";
-import type { Platform } from "@/hooks/useGames";
+import type { Platform } from "@/hooks/usePlatforms";
 
 interface Props {
   onSelectPlatform: (platform: Platform) => void;
