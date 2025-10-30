@@ -1,8 +1,8 @@
 import { Button, HStack, Icon, Menu } from "@chakra-ui/react";
-import { useColorModeValue } from "./ui/color-mode";
 import { BsChevronDown } from "react-icons/bs";
 import usePlatforms from "@/hooks/usePlatforms";
 import type { Platform } from "@/hooks/usePlatforms";
+import useCustomButtonTheme from "./ui/ui-hooks/useCustomButtonTheme";
 
 interface Props {
   onSelectPlatform: (platform: Platform) => void;
@@ -12,9 +12,7 @@ interface Props {
 const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   const { data, error } = usePlatforms();
 
-  const bg = useColorModeValue("gray.100", "gray.700");
-  const hoverBg = useColorModeValue("gray.200", "gray.600");
-  const color = useColorModeValue("black", "white");
+  const { bg, hoverBg, color } = useCustomButtonTheme();
 
   if (error) return null;
 

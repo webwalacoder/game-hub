@@ -1,6 +1,6 @@
 import { Menu, Button, HStack, Icon } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
-import { useColorModeValue } from "./ui/color-mode";
+import useCustomButtonTheme from "./ui/ui-hooks/useCustomButtonTheme";
 
 interface Props {
   onSelectSortOrder: (sortOrder: string) => void;
@@ -8,10 +8,7 @@ interface Props {
 }
 
 const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {
-  const bg = useColorModeValue("gray.100", "gray.700");
-  const hoverBg = useColorModeValue("gray.200", "gray.600");
-  const color = useColorModeValue("black", "white");
-
+  const { bg, hoverBg, color } = useCustomButtonTheme();
   const sortOrders = [
     { value: "", label: "Relevance" },
     { value: "-added", label: "Date added" },
